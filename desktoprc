@@ -1,0 +1,24 @@
+#==========================
+# DESKTOP PC CONFIG
+#==========================
+
+# aliases
+#==========================
+# print temperatures
+alias temp="sensors | grep '°C' && gputemp"
+
+# open pstate directory
+alias cpudir="cd /sys/devices/system/cpu/intel_pstate"
+
+# run cpumax sudo
+alias cpumax="sudo $HOME/scripts/cpumax"
+
+# edit desktop rc
+alias desktoprc="nvim $HOME/gp_dotfiles/desktoprc"
+alias pcrc="desktoprc"
+
+# functions
+#==========================
+gputemp() {
+    echo "GTX 1080:       +$(nvidia-smi | grep -Eo '[0-9]{1,3}C' -m 1)"
+}

@@ -1,0 +1,8 @@
+#==========================
+# MACBOOK PRO CONFIG
+#==========================
+
+# aliases
+#==========================
+# edit mbprc
+alias mbprc="nvim $HOME/gp_dotfiles/mbprc"

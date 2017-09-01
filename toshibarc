@@ -1,0 +1,8 @@
+#==========================
+# TOSHIBA LAPTOP CONFIG
+#==========================
+
+# aliases
+#==========================
+# edit toshibarc
+alias toshibarc="nvim $HOME/gp_dotfiles/toshibarc"

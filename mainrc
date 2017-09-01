@@ -1,0 +1,73 @@
+# vars
+#==========================
+DF_DIR="$HOME/gp_dotfiles"
+
+# load profile
+source $HOME/.profile
+
+# zsh setup
+#==========================
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$DF_DIR/zsh_custom"
+ZSH_THEME="gp1"
+COMPLETION_WAITING_DOTS="true"
+# CASE_SENSITIVE="true"
+# HYPHEN_INSENSITIVE="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# omzsh plugins
+#==========================
+# plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+# aliases
+#==========================
+# prompt on cp overwrite, verbose
+alias cp="cp -iv"
+
+# prompt on mv overwrite, verbose
+alias mv="mv -iv"
+
+# create parents as needed, verbose
+alias mkdir="mkdir -pv"
+
+# reload zsh cfg
+alias rezsh="source $HOME/.zshrc"
+
+# edit nvim configuration
+alias nvimrc="nvim -S $HOME/.config/nvim/session/nvimrc.vim"
+
+# edit zshrc
+alias zshrc="nvim $HOME/.zshrc"
+
+# edit mainrc
+alias mainrc="nvim $DF_DIR/mainrc"
+
+# move to dotfiles directory
+alias dotfiles="cd $DF_DIR/"
+
+# reload xresources
+alias rexres="xrdb $HOME/.Xresources"
+
+# functions
+#==========================
+
+# override cd to print contents
+cd() {
+    builtin cd $@
+    ls
+}
+
+# initially alias node to a function that inits nvm
+# the function will then remove the alias, allowing use of node in that session
+# this is to avoid running nvm in each session, as it greatly slows shell startup time
+# now the nvm init time happens during the first run of the 'node' command in each session,
+# and only once per session
+node() {
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    unset -f node
+    node $@
+}

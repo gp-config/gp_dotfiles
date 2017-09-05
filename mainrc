@@ -58,6 +58,11 @@ cd() {
     ls
 }
 
+# open nvim with given session
+nvims() {
+    nvim -S "$HOME/.config/nvim/session/$1.vim"
+}
+
 # initially alias node to a function that inits nvm
 # the function will then remove the alias, allowing use of node in that session
 # this is to avoid running nvm in each session, as it greatly slows shell startup time

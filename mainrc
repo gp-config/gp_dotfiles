@@ -32,10 +32,13 @@ alias mv="mv -iv"
 alias mkdir="mkdir -pv"
 
 # reload zsh cfg
-alias rezsh="source $HOME/.zshrc"
+alias rezsh="source $HOME/.zshrc && clear && echo '$HOME/.zshrc loaded'"
 
 # edit nvim configuration
 alias nvimrc="nvim -S $HOME/.config/nvim/session/nvimrc.vim"
+
+# measure nvim startup time
+alias nvimstartup="nvim -u NONE --startuptime /dev/stdout +q"
 
 # edit zshrc
 alias zshrc="nvim $HOME/.zshrc"
@@ -58,6 +61,16 @@ cd() {
     ls
 }
 
+ed() {
+    eval "$HOME/dev/rust/alacritty/target/release/alacritty --command nvim $@ > /dev/null 2>&1 &"
+}
+
+eds() {
+    eval "$HOME/dev/rust/alacritty/target/release/alacritty --command nvim -S $HOME/.config/nvim/session/$1.vim > /dev/null 2>&1 &"
+}
+
+
+
 # open nvim with given session
 nvims() {
     nvim -S "$HOME/.config/nvim/session/$1.vim"
@@ -68,10 +81,15 @@ nvims() {
 # this is to avoid running nvm in each session, as it greatly slows shell startup time
 # now the nvm init time happens during the first run of the 'node' command in each session,
 # and only once per session
-node() {
+initnode() {
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    unset -f initnode
     unset -f node
+}
+node() {
+    initnode
     node $@
 }
+

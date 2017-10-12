@@ -6,7 +6,9 @@
 #==========================
 # edit toshibarc
 alias toshibarc="nvim $HOME/gp_dotfiles/toshibarc"
-alias guidir="cd $HOME/work/qac/electron/BDDUI-React"
+alias guidir="cd $HOME/work/qac/electron/bdt-ui-v1"
+alias gui2="cd $HOME/work/qac/electron/bdt-ui-v2"
+alias gui2m="cd $HOME/work/qac/electron/bdt-ui-v2-mockups"
 alias run="./GP_RUN"
 alias build="./GP_BUILD"
 
